@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
                 scanner.close();
             }
         }
+
         public static void removecomments(String inputFile, String outputFile) throws IOException {
             BufferedReader reader = null;
             BufferedWriter writer = null;
@@ -35,9 +36,9 @@ import java.util.regex.Pattern;
                 content = blockComm.matcher(content).replaceAll("");
                 content = lineComm.matcher(content).replaceAll("");
                 writer.write(content);
-            } finally {
-                if (reader != null) reader.close();
-                if (writer != null) writer.close();
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
             }
         }
     }
+
